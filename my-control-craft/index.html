@@ -5,82 +5,141 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Política de Privacidad — My Control Craft</title>
   <style>
+    :root {
+      --bg: #0d1117;
+      --term: #0a0e14;
+      --green: #3ddc84;
+      --green-dim: #2a9d62;
+      --text: #c9d1d9;
+      --muted: #6e7681;
+      --amber: #e3b341;
+      --border: #1f2630;
+    }
+    * { box-sizing: border-box; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      max-width: 640px;
-      margin: 60px auto;
-      padding: 0 24px 60px;
-      color: #222;
+      font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', Consolas, 'Courier New', monospace;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 40px 16px 80px;
       line-height: 1.7;
-      background: #fff;
+      font-size: 14px;
+    }
+    .window {
+      max-width: 720px;
+      margin: 0 auto;
+      background: var(--term);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .titlebar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: #161b22;
+      border-bottom: 1px solid var(--border);
+    }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot.red { background: #ff5f56; }
+    .dot.yellow { background: #ffbd2e; }
+    .dot.green { background: #27c93f; }
+    .titlebar .name {
+      margin-left: 10px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .body { padding: 24px 22px 30px; }
+    .prompt::before {
+      content: "asier@control-craft:~$ ";
+      color: var(--green-dim);
+    }
+    .prompt {
+      color: var(--green);
+      margin: 0 0 18px;
+      word-break: break-word;
     }
     h1 {
-      font-size: 22px;
+      font-size: 16px;
+      color: var(--green);
       font-weight: 700;
-      margin-bottom: 4px;
+      margin: 0 0 2px;
     }
-    .meta {
-      color: #888;
-      font-size: 13px;
-      margin-bottom: 40px;
-    }
+    h1::before { content: "# "; color: var(--green-dim); }
+    .meta { color: var(--muted); font-size: 12px; margin: 0 0 26px; }
     h2 {
-      font-size: 15px;
+      font-size: 14px;
+      color: var(--amber);
       font-weight: 700;
-      margin-top: 32px;
-      margin-bottom: 6px;
+      margin: 28px 0 4px;
     }
-    p, li {
-      font-size: 15px;
-      color: #333;
+    h2::before { content: "> "; color: var(--green-dim); }
+    p { margin: 6px 0; color: var(--text); }
+    ul { padding-left: 0; list-style: none; margin: 8px 0; }
+    li { margin: 4px 0; }
+    li::before { content: "- "; color: var(--green-dim); }
+    a { color: var(--green); text-decoration: none; border-bottom: 1px dotted var(--green-dim); }
+    a:hover { color: #fff; }
+    hr { border: none; border-top: 1px dashed var(--border); margin: 30px 0; }
+    .cursor {
+      display: inline-block;
+      width: 8px; height: 15px;
+      background: var(--green);
+      margin-left: 2px;
+      vertical-align: middle;
+      animation: blink 1s steps(1) infinite;
     }
-    ul {
-      padding-left: 20px;
-    }
-    li {
-      margin-bottom: 4px;
-    }
-    a {
-      color: #222;
-    }
-    hr {
-      border: none;
-      border-top: 1px solid #eee;
-      margin: 40px 0;
-    }
+    @keyframes blink { 50% { opacity: 0; } }
   </style>
 </head>
 <body>
-  <h1>Política de Privacidad</h1>
-  <p class="meta">My Control Craft &middot; Última actualización: junio de 2026</p>
-  <p>Soy Asier, el desarrollador de My Control Craft. Aquí explico qué datos maneja la app y cómo los trato.</p>
+  <div class="window">
+    <div class="titlebar">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+      <span class="name">privacidad.txt — My Control Craft</span>
+    </div>
+    <div class="body">
+      <p class="prompt">cat privacidad.txt</p>
 
-  <h2>Datos que se guardan en tu dispositivo</h2>
-  <p>Todo tu inventario (artículos, ubicaciones, familias, imágenes) se guarda en tu propio teléfono. No tengo acceso a esos datos ni los envío a ningún servidor mío.</p>
+      <h1>Política de Privacidad</h1>
+      <p class="meta">My Control Craft &middot; Última actualización: junio de 2026</p>
 
-  <h2>Google Sign-In</h2>
-  <p>Uso el inicio de sesión con Google para identificarte. Solo obtengo tu email (para mostrártelo en la app y para lo que explico abajo) y tu ID de usuario (para vincular tu Plan Pro entre dispositivos). No guardo nada de esto en un servidor propio.</p>
+      <p>Soy Asier, el desarrollador de My Control Craft. Aquí explico qué datos maneja la app y cómo los trato.</p>
 
-  <h2>Lista de Plan Pro</h2>
-  <p>A veces doy el Plan Pro gratis a algunas personas. Para eso guardo una lista de correos en Firebase (un servicio de Google). Cuando inicias sesión, la app comprueba si tu correo está en esa lista para activarte el Pro. Solo se usa tu correo para esa comprobación, y nadie más que yo puede ver la lista.</p>
+      <h2>Datos que se guardan en tu dispositivo</h2>
+      <p>Todo tu inventario (artículos, ubicaciones, familias, imágenes) se guarda en tu propio teléfono. No tengo acceso a esos datos ni los envío a ningún servidor mío.</p>
 
-  <h2>Google Drive</h2>
-  <p>Si activas Google Drive (función del Plan Pro), la app guarda una copia de seguridad de tu inventario en una carpeta privada de tu Drive que solo la app puede ver. No accedo a ningún otro archivo tuyo. Puedes quitar el acceso cuando quieras desde tu cuenta de Google.</p>
+      <h2>Google Sign-In</h2>
+      <p>Uso el inicio de sesión con Google para identificarte. Solo obtengo tu email (para mostrártelo en la app y para lo que explico abajo) y tu ID de usuario (para vincular tu Plan Pro entre dispositivos). No guardo nada de esto en un servidor propio.</p>
 
-  <h2>Pagos</h2>
-  <p>Los pagos del Plan Pro los gestiona Google Play. Uso RevenueCat para comprobar si tu suscripción está activa. No tengo acceso a los datos de tu tarjeta. Puedes ver la política de RevenueCat en <a href="https://www.revenuecat.com/privacy">revenuecat.com/privacy</a>.</p>
+      <h2>Acceso al Plan Pro</h2>
+      <p>Para gestionar tu acceso al Plan Pro, la app comprueba tu correo en Firebase (un servicio de Google) al iniciar sesión. Solo se usa tu correo para esa comprobación.</p>
 
-  <h2>Permisos</h2>
-  <ul>
-    <li>Cámara: para fotografiar tus artículos, solo cuando tú lo pides.</li>
-    <li>Galería: para elegir imágenes que ya tienes.</li>
-    <li>Internet: para Drive, el Plan Pro y la comprobación de la lista.</li>
-  </ul>
+      <h2>Google Drive</h2>
+      <p>Si activas Google Drive (función del Plan Pro), la app guarda una copia de seguridad de tu inventario en una carpeta privada de tu Drive que solo la app puede ver. No accedo a ningún otro archivo tuyo. Puedes quitar el acceso cuando quieras desde tu cuenta de Google.</p>
 
-  <h2>Menores</h2>
-  <p>La app no está dirigida a menores de 13 años.</p>
+      <h2>Pagos</h2>
+      <p>Los pagos del Plan Pro los gestiona Google Play. Uso RevenueCat para comprobar si tu suscripción está activa. No tengo acceso a los datos de tu tarjeta. Puedes ver la política de RevenueCat en <a href="https://www.revenuecat.com/privacy">revenuecat.com/privacy</a>.</p>
 
-  <hr>
-  <p>Si tienes cualquier pregunta puedes escribirme a <a href="mailto:asierxodev@gmail.com">asierxodev@gmail.com</a>.</p>
+      <h2>Permisos</h2>
+      <ul>
+        <li>Cámara: para fotografiar tus artículos, solo cuando tú lo pides.</li>
+        <li>Galería: para elegir imágenes que ya tienes.</li>
+        <li>Internet: para Drive, el Plan Pro y la comprobación de tu cuenta.</li>
+      </ul>
+
+      <h2>Menores</h2>
+      <p>La app no está dirigida a menores de 13 años.</p>
+
+      <hr>
+      <p>Si tienes cualquier pregunta puedes escribirme a <a href="mailto:asierxodev@gmail.com">asierxodev@gmail.com</a>.</p>
+
+      <p class="prompt" style="margin-top:28px;">_<span class="cursor"></span></p>
+    </div>
+  </div>
 </body>
 </html>
